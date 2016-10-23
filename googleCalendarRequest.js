@@ -1,11 +1,7 @@
-
-
 var fs = require('fs');
 var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
-
-
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/calendar-nodejs-quickstart.json
@@ -15,16 +11,33 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
 var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
 
 // Load client secrets from a local file.
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-  if (err) {
-    console.log('Error loading client secret file: ' + err);
-    return;
-  }
+function getAuth(response) {
+  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+    if (err) {
+      message = 'Error loading client secret file: ' + err;
+    }
+    else {
+      // Authorize a client with the loaded credentials, then call the
+      // Google Calendar API.
+      var message = authorize(JSON.parse(content), listEvents);
+      var body = '<html>'+
+        '<head>'+
+        '<meta http-equiv="Content-Type" content="text/html; '+
+        'charset=UTF-8" />'+
+        '</head>'+
+        '<body>'+
+        '<p>'+
+        message+
+        '</p>'+
+        '</body>'+
+        '</html>';
 
-  // Authorize a client with the loaded credentials, then call the
-  // Google Calendar API.
-  authorize(JSON.parse(content), listEvents);
-});
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write(body);
+      response.end();
+    }
+  });
+}
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -34,7 +47,6 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  debugger;
   var clientSecret = credentials.web.client_secret;
   var clientId = credentials.web.client_id;
   var redirectUrl = credentials.web.redirect_uris[0] ;
@@ -107,6 +119,8 @@ function storeToken(token) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listEvents(auth) {
+  var out = '';
+
   var calendar = google.calendar('v3');
   calendar.events.list({
     auth: auth,
@@ -117,19 +131,23 @@ function listEvents(auth) {
     orderBy: 'startTime'
   }, function(err, response) {
     if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
+      out = 'The API returned an error: ' + err;
+      return out;
     }
     var events = response.items;
     if (events.length == 0) {
-      console.log('No upcoming events found.');
+      out += 'No upcoming events found.';
     } else {
-      console.log('Upcoming 10 events:');
+      out += 'Upcoming 10 events:';
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
         var start = event.start.dateTime || event.start.date;
-        console.log('%s - %s', start, event.summary);
+        out += '%s - %s', start, event.summary;
       }
     }
   });
+
+  return out;
 }
+
+exports.getAuth = getAuth;

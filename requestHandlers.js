@@ -1,5 +1,6 @@
 var exec = require("child_process").exec;
 var querystring = require("querystring");
+var googleCalendarRequest = require('./googleCalendarRequest');
 
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
@@ -22,6 +23,12 @@ function start(response, postData) {
   response.end();
 }
 
+function cal(response, postData) {
+  console.log("Request hanlder 'cal' was called.");
+
+  googleCalendarRequest.getAuth(response);
+}
+
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
@@ -31,4 +38,5 @@ function upload(response, postData) {
 }
 
 exports.start = start;
+exports.cal = cal;
 exports.upload = upload;
