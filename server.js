@@ -1,27 +1,45 @@
-var http = require("http");
-var url = require("url");
+// server.js
 
-function start(route, handle) {
-  function onRequest(request, response) {
-    var postData = "";
-    var pathname = url.parse(request.url).pathname;
-    console.log("Request for " + pathname + " recieved.");
+// Started using https://scotch.io/tutorials/setting-up-a-mean-stack-single-page-application
 
-    request.setEncoding("utf8");
+// modules =================================================
+var express        = require('express');
+var app            = express();
+var bodyParser     = require('body-parser');
+var methodOverride = require('method-override');
 
-    request.addListener("data", function(postDataChunk) {
-      postData += postDataChunk;
-      console.log("Received POST data chunk '" +
-        postDataChunk + "'.");
-    });
 
-    request.addListener("end", function() {
-      route(handle, pathname, response, postData);
-    });
-  }
+// configuration ===========================================
 
-  http.createServer(onRequest).listen(8888);
-  console.log("Server has started.");
-}
+// set our port
+var port = process.env.PORT || 8585;
 
-exports.start = start;
+// get all data/stuff of the body (POST) parameters
+// parse application/json
+app.use(bodyParser.json());
+
+// parse application/vnd.api+json as json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
+app.use(methodOverride('X-HTTP-Method-Override'));
+
+// set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public'));
+
+
+// routes ==================================================
+require('./app/routes')(app); // configure our routes
+
+
+// start app ===============================================
+// startup our app at http://localhost:8585
+app.listen(port);
+
+// shoutout to the user
+console.log('Server started on: ' + port);
+
+exports = module.exports = app;
