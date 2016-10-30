@@ -25,7 +25,7 @@ a {
   width: 150px;
 }
 
-.ui-state {
+.ui-state-default {
   border: 1px solid darkgrey;
   color: color: darkgrey;
 }
