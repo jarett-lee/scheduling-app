@@ -6,3 +6,38 @@ body {
 a {
   color: #00B7FF;
 }
+
+#sortable1, #sortable2, #sortable3, #sortable4 {
+  border: 1px solid #eee;
+  width: 142px;
+  min-height: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0 0 0;
+  float: left;
+  margin-right: 10px;
+}
+
+#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li {
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 120px;
+}
+
+.ui-state {
+  border: 1px solid darkgrey;
+  color: color: darkgrey;
+}
+
+.highlight-1 {
+  background-color: yellow;
+}
+
+.highlight-2 {
+  background-color: lime;
+}
+
+.highlight-3 {
+  background-color: #82CFFD;
+}

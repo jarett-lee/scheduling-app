@@ -10,6 +10,12 @@
   <meta name="author" content="Jarett Lee">
 
   <!-- Website Styles -->
+
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="../stylesheets/bootstrap-3.3.7.css">
+  <link rel="stylesheet" href="../stylesheets/bootstrap-theme-3.3.7.css">
+
+  <!-- Custom Stylesheets -->
   <link rel="stylesheet" href="../stylesheets/style.css">
 
 </head>
@@ -22,8 +28,63 @@
     </p>
   </div>
 
+  <br />
+
+  <div>
+    <div style="float: left;">
+      <ul id="sortable1" class="connectedSortable">
+        <li class="ui-state">Item 1</li>
+        <li class="ui-state">Item 2</li>
+        <li class="ui-state">Item 3</li>
+        <li class="ui-state">Item 4</li>
+        <li class="ui-state">Item 5</li>
+      </ul>
+    </div>
+    <div style="float: left;">
+      <ul id="sortable2" class="connectedSortable">
+        <li class="ui-state highlight-1">Item 1</li>
+        <li class="ui-state highlight-1">Item 2</li>
+        <li class="ui-state highlight-1">Item 3</li>
+        <li class="ui-state highlight-1">Item 4</li>
+        <li class="ui-state highlight-1">Item 5</li>
+      </ul>
+    </div>
+    <div style="float: left;">
+      <ul id="sortable3" class="connectedSortable">
+        <li class="ui-state highlight-2">Item 1</li>
+        <li class="ui-state highlight-2">Item 2</li>
+        <li class="ui-state highlight-2">Item 3</li>
+        <li class="ui-state highlight-2">Item 4</li>
+        <li class="ui-state highlight-2">Item 5</li>
+      </ul>
+    </div>
+    <div style="float: left;">
+      <ul id="sortable4" class="connectedSortable">
+        <li class="ui-state highlight-3">Item 1</li>
+        <li class="ui-state highlight-3">Item 2</li>
+        <li class="ui-state highlight-3">Item 3</li>
+        <li class="ui-state highlight-3">Item 4</li>
+        <li class="ui-state highlight-3">Item 5</li>
+      </ul>
+    </div>
+  </div>
+
   <!-- JavaScript -->
-  <script src="../javascript/script.js"></script>
+
+  <!-- External Libraries -->
+  <!-- <script src="../javascript/jquery-3.1.1.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="../javascript/jquery-ui-1.12.1.js"></script>
+  <script src="../javascript/bootstrap-3.3.7.js"></script>
+  <script>
+  $( function() {
+    $( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  } );
+  </script>
+
+  <!-- Custom Scripts -->
 
 </body>
 </html>
