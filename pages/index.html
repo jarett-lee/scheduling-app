@@ -32,6 +32,7 @@
 
   <div>
     <div style="float: left;">
+      <h4>Repeating Events</h4>
       <ul id="sortable1" class="connectedSortable">
         <li class="ui-state">Item 1</li>
         <li class="ui-state">Item 2</li>
@@ -41,6 +42,7 @@
       </ul>
     </div>
     <div style="float: left;">
+      <h4>Singleton Events</h4>
       <ul id="sortable2" class="connectedSortable">
         <li class="ui-state highlight-1">Item 1</li>
         <li class="ui-state highlight-1">Item 2</li>
@@ -50,6 +52,7 @@
       </ul>
     </div>
     <div style="float: left;">
+      <h4>Other Events</h4>
       <ul id="sortable3" class="connectedSortable">
         <li class="ui-state highlight-2">Item 1</li>
         <li class="ui-state highlight-2">Item 2</li>
@@ -59,12 +62,13 @@
       </ul>
     </div>
     <div style="float: left;">
+      <h4>Actual Plan</h4>
       <ul id="sortable4" class="connectedSortable">
-        <li class="ui-state highlight-3">Item 1</li>
-        <li class="ui-state highlight-3">Item 2</li>
-        <li class="ui-state highlight-3">Item 3</li>
-        <li class="ui-state highlight-3">Item 4</li>
-        <li class="ui-state highlight-3">Item 5</li>
+        <li class="ui-state highlight-3">Attend class</li>
+        <li class="ui-state highlight-3">Attend club</li>
+        <li class="ui-state highlight-3">Eat lunch</li>
+        <li class="ui-state highlight-3">Attend meeting</li>
+        <li class="ui-state highlight-3">Attend class</li>
       </ul>
     </div>
   </div>
@@ -76,15 +80,9 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="../javascript/jquery-ui-1.12.1.js"></script>
   <script src="../javascript/bootstrap-3.3.7.js"></script>
-  <script>
-  $( function() {
-    $( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-  } );
-  </script>
 
   <!-- Custom Scripts -->
+  <script src="../javascript/script.js"></script>
 
 </body>
 </html>

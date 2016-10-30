@@ -9,7 +9,7 @@ a {
 
 #sortable1, #sortable2, #sortable3, #sortable4 {
   border: 1px solid #eee;
-  width: 142px;
+  width: 162px;
   min-height: 20px;
   list-style-type: none;
   margin: 0;
@@ -22,7 +22,7 @@ a {
   margin: 0 5px 5px 5px;
   padding: 5px;
   font-size: 1.2em;
-  width: 120px;
+  width: 150px;
 }
 
 .ui-state {
