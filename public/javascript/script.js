@@ -1,5 +1,5 @@
 $( function() {
-  $( "#sortable1, #sortable2, #sortable3, #sortable4" ).sortable({
+  $( "#sortable1" ).sortable({
       connectWith: ".connectedSortable",
       forcePlaceholderSize: false,
       helper: function(e,li) {
@@ -10,9 +10,12 @@ $( function() {
           copyHelper && copyHelper.remove();
       }
   });
-      $(".connectedSortable").sortable({
-          receive: function(e,ui) {
-              copyHelper= null;
-          }
+  $(".connectedSortable").sortable({
+    receive: function(e,ui) {
+      copyHelper= null;
+    }
   });
+  $( "#sortable2, #sortable4" ).sortable({
+    connectWith: ".connectedSortable"
+  }).disableSelection();
 } );
