@@ -1,10 +1,21 @@
 {
   "name": "scheduling-app",
+  "description": "Jarett Lee mentored by Akjil Agrawal",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Owloid/scheduling-app.git"
+  },
+  "author": "Jarett Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Owloid/scheduling-app/issues"
+  },
+  "homepage": "https://github.com/Owloid/scheduling-app#readme",
   "dependencies": {
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
