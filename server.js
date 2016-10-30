@@ -18,18 +18,6 @@ firebase.initializeApp({
   databaseURL: "https://scheduling-app-ffcb8.firebaseio.com"
 });
 
-/*
-var firebase = require("firebase");
-firebase.initializeApp({
-  serviceAccount: {
-    projectId: "projectId",
-    clientEmail: "foo@projectId.iam.gserviceaccount.com",
-    privateKey: "-----BEGIN PRIVATE KEY-----\nkey\n-----END PRIVATE KEY-----\n"
-  },
-  databaseURL: "https://databaseName.firebaseio.com"
-});
-*/
-
 // set our port
 var port = process.env.PORT || 8885;
 
