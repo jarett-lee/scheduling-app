@@ -1,43 +1,43 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
-#sortable1, #sortable2, #sortable3, #sortable4 {
-  border: 1px solid #eee;
-  width: 162px;
-  min-height: 20px;
-  list-style-type: none;
-  margin: 0;
-  padding: 5px 0 0 0;
-  float: left;
-  margin-right: 10px;
+#sortable1, #sortable2, #sortable3, #sortable4, #sortable5 {
+    border: 1px solid #eee;
+    width: 162px;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
 }
 
-#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li {
-  margin: 0 5px 5px 5px;
-  padding: 5px;
-  font-size: 1.2em;
-  width: 150px;
+#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 150px;
 }
 
 .ui-state-default {
-  border: 1px solid darkgrey;
-  color: color: darkgrey;
+    border: 1px solid darkgrey;
+    color: color: darkgrey;
 }
 
 .highlight-1 {
-  background-color: yellow;
+    background-color: yellow;
 }
 
 .highlight-2 {
-  background-color: lime;
+    background-color: lime;
 }
 
 .highlight-3 {
-  background-color: #82CFFD;
+    background-color: #82CFFD;
 }
