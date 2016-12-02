@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Owloid/scheduling-app#readme",
   "dependencies": {
     "express": "~4.13.4",
+    "firebase": "^3.6.2",
+    "firebaseui": "^1.0.0",
     "path": "~0.12.7"
   },
   "devDependencies": {
