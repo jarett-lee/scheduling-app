@@ -36,25 +36,43 @@ $( function() {
     connectWith: '.connectedSortable'
   });
 
-  var firebaseRef = firebase.database().ref('test');
-  var element = document.querySelector('#mybutton');
+  $( '#save' ).click(function() {
+    save();
+  });
 
-  element.addEventListener("click", function(e) {
-    addTime();
-  }, false);
-
-  function addTime() {
-    firebaseRef.once('value').then(function(snapshot) {
-      var previousTime = snapshot.val().time;
+  function save() {
+    var id = $( '#myid' ).val();
+    if (id) {
+      var firebaseUserRef = firebase.database().ref('/testuser/' + id);
 
       var date = new Date();
       var time = date.toString();
 
-      firebaseRef.set({
-        previousTime: previousTime,
+      firebaseUserRef.set({
         time: time
       });
-    });
+    }
   }
 
+  function display(info) {
+    console.log(info);
+  }
+
+  $( '#load' ).click(function() {
+    updateScreen();
+  });
+
+  function updateScreen() {
+    var id = $( '#myid' ).val();
+    if (id) {
+      var firebaseUserRef = firebase.database().ref('/testuser/' + id);
+
+      firebaseUserRef.once('value').then(function(snapshot) {
+        var info = snapshot.val().time;
+        display(info);
+      });
+    }
+  }
+
+  var firebaseRef = firebase.database().ref('test');
 } );
