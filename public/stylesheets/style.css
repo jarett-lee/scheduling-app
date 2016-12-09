@@ -7,7 +7,7 @@ a {
     color: #00B7FF;
 }
 
-#sortable1, #sortable2, #sortable3, #sortable4, #sortable5 {
+.sortable {
     border: 1px solid #eee;
     width: 162px;
     min-height: 20px;
@@ -18,7 +18,7 @@ a {
     margin-right: 10px;
 }
 
-#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li {
+.sortable li {
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 1.2em;
@@ -40,4 +40,8 @@ a {
 
 .highlight-3 {
     background-color: #82CFFD;
+}
+
+.highlight-4 {
+    background-color: white;
 }

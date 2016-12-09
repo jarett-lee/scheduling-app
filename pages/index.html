@@ -15,10 +15,58 @@
     <!-- External Libraries -->
     <link rel="stylesheet" href="../stylesheets/bootstrap-3.3.7.css">
     <link rel="stylesheet" href="../stylesheets/bootstrap-theme-3.3.7.css">
+    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" /> -->
 
     <!-- Custom Stylesheets -->
     <link rel="stylesheet" href="../stylesheets/style.css">
 
+
+    <!-- JavaScript -->
+
+    <!-- External -->
+    <script src="../javascript/jquery-3.1.1.js"></script>
+    <script src="../javascript/jquery-ui-1.12.1.js"></script>
+    <script src="../javascript/bootstrap-3.3.7.js"></script>
+
+    <!-- Firebase Initialization -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDFHUcWeR-AJwKNDf24Yl-tOFBwQoUyPMg",
+            authDomain: "scheduling-app-ffcb8.firebaseapp.com",
+            databaseURL: "https://scheduling-app-ffcb8.firebaseio.com",
+            storageBucket: "scheduling-app-ffcb8.appspot.com",
+            messagingSenderId: "912110575490"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!-- Firebase UI -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+    <script type="text/javascript">
+        // FirebaseUI config.
+        var uiConfig = {
+            // signInSuccessUrl: '<url-to-redirect-to-on-success>',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
+            ],
+            // Terms of service url.
+            // tosUrl: '<your-tos-url>'
+        };
+
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+    <!-- Custom -->
+    <script src="../javascript/script.js"></script>
 </head>
 
 <body>
@@ -27,14 +75,22 @@
         <p>
             Figure out your time commitments and dedicate your time to what you care about.
         </p>
+        <h1>Sign in disabled</h1>
+        <div id="firebaseui-auth-container"></div>
     </div>
 
     <br />
 
     <div>
+        <input id="myid" type="text" />
+        <button id="save">Save</button>
+        <button id="load">Load</button>
+    </div>
+
+    <div>
         <div style="float: left;">
             <h4>Repeating Events</h4>
-            <ul id="sortable1" class="connectedSortable">
+            <ul id="repeat" class="connectedSortable sortable">
                 <li class="ui-state-default repeater">Item 1</li>
                 <li class="ui-state-default repeater">Item 2</li>
                 <li class="ui-state-default repeater">Item 3</li>
@@ -44,7 +100,7 @@
         </div>
         <div style="float: left;">
             <h4>Singleton Events</h4>
-            <ul id="sortable2" class="connectedSortable">
+            <ul id="set" class="connectedSortable sortable">
                 <li class="ui-state-default highlight-1">Item 1</li>
                 <li class="ui-state-default highlight-1">Item 2</li>
                 <li class="ui-state-default highlight-1">Item 3</li>
@@ -53,60 +109,12 @@
             </ul>
         </div>
         <div style="float: left;">
-            <h4>Other Events</h4>
-            <ul id="sortable3" class="connectedSortable">
-                <li class="ui-state-default highlight-2">Item 1</li>
-                <li class="ui-state-default highlight-2">Item 2</li>
-                <li class="ui-state-default highlight-2">Item 3</li>
-                <li class="ui-state-default highlight-2">Item 4</li>
-                <li class="ui-state-default highlight-2">Item 5</li>
-            </ul>
-        </div>
-        <div style="float: left;">
-            <h4>Actual Plan</h4>
-            <ul id="sortable4" class="droppable-hover">
-                <li class="ui-state-default no-drag highlight-3">Attend class</li>
-                <li class="ui-state-default no-drag highlight-3">Attend club</li>
-                <li class="ui-state-default no-drag highlight-3">Eat lunch</li>
-                <li class="ui-state-default no-drag highlight-3">Attend meeting</li>
-                <li class="ui-state-default no-drag highlight-3">Attend class</li>
-            </ul>
-        </div>
-        <div style="float: left;">
             <h4>Trash</h4>
-            <ul id="sortable5" class="droppable-hover">
-                <li class="ui-state-default no-drag highlight-3">Attend class</li>
-                <li class="ui-state-default no-drag highlight-3">Attend club</li>
-                <li class="ui-state-default no-drag highlight-3">Eat lunch</li>
-                <li class="ui-state-default no-drag highlight-3">Attend meeting</li>
-                <li class="ui-state-default no-drag highlight-3">Attend class</li>
+            <ul id="trash" class="droppable-hover sortable">
+                <li class="ui-state-default no-drag highlight-4">Trash</li>
             </ul>
         </div>
     </div>
-
-    <!-- JavaScript -->
-
-    <!-- External Libraries -->
-    <script src="../javascript/jquery-3.1.1.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-    <script src="../javascript/jquery-ui-1.12.1.js"></script>
-    <script src="../javascript/bootstrap-3.3.7.js"></script>
-
-    <!-- Custom Scripts -->
-    <script src="../javascript/script.js"></script>
-
-</body>
-
-</html>
-
-<!-- External Libraries -->
-<script src="../javascript/jquery-3.1.1.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<script src="../javascript/jquery-ui-1.12.1.js"></script>
-<script src="../javascript/bootstrap-3.3.7.js"></script>
-
-<!-- Custom Scripts -->
-<script src="../javascript/script.js"></script>
 
 </body>
 
