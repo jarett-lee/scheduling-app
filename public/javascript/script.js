@@ -1,29 +1,21 @@
 $( function() {
-  $( "#repeater" ).sortable({
-      connectWith: ".connectedSortable",
-      connectWith: ".droppable-hover",
-      forcePlaceholderSize: false,
-      helper: function(e,li) {
-          copyHelper= li.clone().insertAfter(li);
-          return li.clone();
-      },
-      stop: function() {
-          copyHelper && copyHelper.remove();
-      }
-  } );
-  $(".connectedSortable").sortable({
-    receive: function(e,ui) {
-      copyHelper= null;
-    }
-  });
-
-  $( "#set" ).sortable({
+  $( "#repeat" ).sortable({
     connectWith: ".connectedSortable",
-    connectWith: ".droppable-hover",
+    remove: function(event, ui) {
+      ui.item.clone().appendTo('#set');
+      $(this).sortable('cancel');
+    }
   }).disableSelection();
 
+  $( "#set" ).sortable({
+    connectWith: ".connectedSortable"
+  }).disableSelection()
+
+  $( "#cal" ).sortable({
+    connectWith: ".connectedSortable"
+  }).disableSelection()
+
   $("#trash").droppable({
-    hoverClass: "droppable-hover",
     drop: function(event, ui) {
         var element = ui.draggable.css('position', '');
         $(this).append(element);
@@ -32,8 +24,8 @@ $( function() {
   });
 
   var defaultScreen = {
-    repeat:['Event 1'],
-    set:['My event', 'Other event']
+    repeat:['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'],
+    set:['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']
   };
 
   var emptyScreen = {
@@ -42,10 +34,6 @@ $( function() {
   };
 
   var screen = defaultScreen;
-
-  $( '.connectedSortable' ).sortable({
-    connectWith: '.connectedSortable'
-  });
 
   $( '#save' ).click(function() {
     save();
@@ -113,7 +101,7 @@ $( function() {
 
       firebaseUserRef.once('value').then(function(snapshot) {
         var info = snapshot.val();
-        if (info.repeat && info.set) {
+        if (info != null) {
           display(info);
         }
         else {
